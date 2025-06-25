@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" class="transition-colors duration-300">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackatime Badge Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts.css">
+    <style>
+        .star { display: none; } /* Remove stars for clarity */
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-white text-black dark:bg-[#232946] dark:text-[#b8c1ec] transition-colors duration-300">
+    <div class="glass max-w-2xl w-full mx-4 rounded-2xl shadow-2xl p-0 overflow-hidden relative z-10 border border-[#4f5d75]/30 dark:bg-[#232946] dark:border-[#2d334a]">
+        <header class="bg-[#232946] py-10 px-8 text-center border-b border-[#2d334a]">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-2 tracking-tight">Hackatime Badge Generator</h1>
+            <p class="text-[#b8c1ec] text-lg md:text-xl font-medium tracking-wide">Create your personal Hackatime stats badge with ease.</p>
+        </header>
+        <main class="p-10 flex flex-col gap-10">
+            <div class="space-y-6">
+                <div class="flex flex-col gap-2">
+                    <label for="userID" class="text-[#b8c1ec] font-semibold text-lg">Hack Club User ID</label>
+                    <input type="text" id="userID" placeholder="e.g., U08PGAD2KC1" class="w-full px-5 py-3 rounded-lg bg-[#232946] text-white text-lg border border-[#4f5d75]/40 focus:outline-none focus:ring-2 focus:ring-[#4f5d75] transition-all duration-200" />
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="label" class="text-[#b8c1ec] font-semibold text-lg">Label</label>
+                    <input type="text" id="label" value="Hackatime" class="w-full px-5 py-3 rounded-lg bg-[#232946] text-white text-lg border border-[#4f5d75]/40 focus:outline-none focus:ring-2 focus:ring-[#4f5d75] transition-all duration-200" />
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="color" class="text-[#b8c1ec] font-semibold text-lg">Color</label>
+                    <div class="flex items-center gap-3">
+                        <input type="color" id="color-picker" value="#ec3750" class="w-10 h-10 p-0 border-none bg-transparent cursor-pointer" title="Pick a color" placeholder="#ec3750" />
+                        <input type="text" id="color" value="ec3750" class="flex-1 px-5 py-3 rounded-lg bg-[#232946] text-white text-lg border border-[#4f5d75]/40 focus:outline-none focus:ring-2 focus:ring-[#4f5d75] transition-all duration-200" />
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="style" class="text-[#b8c1ec] font-semibold text-lg">Style</label>
+                    <select id="style" class="w-full px-5 py-3 rounded-lg bg-[#232946] text-white text-lg border border-[#4f5d75]/40 focus:outline-none focus:ring-2 focus:ring-[#4f5d75] transition-all duration-200">
+                        <option value="for-the-badge">For The Badge</option>
+                        <option value="flat">Flat</option>
+                        <option value="flat-square">Flat Square</option>
+                        <option value="plastic">Plastic</option>
+                        <option value="social">Social</option>
+                    </select>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="logo-select" class="text-[#b8c1ec] font-semibold text-lg">Logo</label>
+                    <select id="logo-select" class="w-full px-5 py-3 rounded-lg bg-[#232946] text-white text-lg border border-[#4f5d75]/40 focus:outline-none focus:ring-2 focus:ring-[#4f5d75] transition-all duration-200">
+                        <option value="">None</option>
+                        <option value="https://assets.hackclub.com/icon-rounded.svg">HC rounded</option>
+                        <option value="https://assets.hackclub.com/icon-square.svg">HC Flat</option>
+                        <option value="https://assets.hackclub.com/icon-progress-rounded.svg">HC Pride rounded</option>
+                        <option value="https://assets.hackclub.com/icon-progress-square.svg">HC Pride Flat</option>
+                        <option value="https://assets.hackclub.com/flag-standalone-wtransparent.svg">HC flag White</option>
+                        <option value="https://assets.hackclub.com/flag-standalone-bw.svg">HC flag B/W</option>
+                    </select>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="badge-type" class="text-[#b8c1ec] font-semibold text-lg">Badge Type</label>
+                    <select id="badge-type" class="w-full px-5 py-3 rounded-lg bg-[#232946] text-white text-lg border border-[#4f5d75]/40 focus:outline-none focus:ring-2 focus:ring-[#4f5d75] transition-all duration-200">
+                        <option value="total">Total Time</option>
+                        <option value="daily">Daily Average</option>
+                        <option value="top-language">Top Language</option>
+                        <option value="trust">Trust Level</option>
+                    </select>
+                </div>
+                <div class="flex flex-col gap-2 hidden" id="top-language-group">
+                    <label for="top-language" class="text-[#b8c1ec] font-semibold text-lg">Select Language</label>
+                    <select id="top-language" class="w-full px-5 py-3 rounded-lg bg-[#232946] text-white text-lg border border-[#4f5d75]/40 focus:outline-none focus:ring-2 focus:ring-[#4f5d75] transition-all duration-200">
+                        <option value="HTML">HTML</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="Python">Python</option>
+                        <option value="CSS">CSS</option>
+                        <option value="TypeScript">TypeScript</option>
+                        <option value="Markdown">Markdown</option>
+                        <option value="JSX">JSX</option>
+                        <option value="JSON">JSON</option>
+                        <option value="Text">Text</option>
+                        <option value="Other">Other</option>
+                        <option value="Java">Java</option>
+                        <option value="Bash">Bash</option>
+                        <option value="TeX">TeX</option>
+                        <option value="JAVA">JAVA</option>
+                        <option value="YAML">YAML</option>
+                        <option value="XML">XML</option>
+                        <option value="Org">Org</option>
+                        <option value="Dart">Dart</option>
+                        <option value="PowerShell">PowerShell</option>
+                        <option value="SQL">SQL</option>
+                        <option value="Batchfile">Batchfile</option>
+                        <option value="INI">INI</option>
+                        <option value="RPMSpec">RPMSpec</option>
+                        <option value="GitIgnore file">GitIgnore file</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex flex-col gap-6 items-center">
+                <div class="w-full flex flex-col items-center gap-2">
+                    <span class="text-[#b8c1ec] text-base font-semibold">Badge Preview</span>
+                    <div class="bg-[#232946]/80 rounded-xl p-6 border border-dashed border-[#4f5d75] flex justify-center items-center w-full">
+                        <img id="badge-preview" src="" alt="Badge Preview" class="max-w-full drop-shadow-lg transition-all duration-300 hover:scale-105" />
+                    </div>
+                </div>
+                <div class="w-full flex flex-col gap-2">
+                    <label for="output-format" class="text-[#b8c1ec] text-base font-semibold">Output Format</label>
+                    <select id="output-format" class="w-full px-5 py-3 rounded-lg bg-[#232946] text-white text-lg border border-[#4f5d75]/40 focus:outline-none focus:ring-2 focus:ring-[#4f5d75] transition-all duration-200">
+                        <option value="markdown">Markdown</option>
+                        <option value="link">Link</option>
+                        <option value="html">HTML</option>
+                    </select>
+                </div>
+                <div class="w-full">
+                    <div class="code-box relative bg-[#151a23] rounded-lg border border-[#2d334a] mt-2">
+                        <pre class="p-5 overflow-x-auto"><code id="output-code" class="text-[#4f5d75] font-mono text-base"></code></pre>
+                        <button class="copy-btn absolute top-2 right-2 bg-[#4f5d75] text-white px-4 py-2 rounded-md font-semibold shadow-md hover:bg-[#232946] transition-all duration-200" data-target="output-code">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
