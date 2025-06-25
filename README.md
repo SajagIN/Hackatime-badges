@@ -20,4 +20,4 @@ Easily create beautiful, customizable Hack Club Hackatime stat badges for your p
 Made with ❤️ by a Hack Clubber.
 
 > [!NOTE]   
-> This not for tracking individual projects!
+> This is not for tracking individual projects!
