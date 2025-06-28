@@ -20,7 +20,15 @@
         <main class="p-10 flex flex-col gap-10">
             <div class="space-y-6">
                 <div class="flex flex-col gap-2">
-                    <label for="userID" class="text-[#b8c1ec] font-semibold text-lg">Hackatime User ID</label>
+                    <label for="userID" class="text-[#b8c1ec] font-semibold text-lg flex items-center gap-2">
+                        Slack User ID
+                        <span class="relative group cursor-pointer">
+                            <span class="ml-1 text-[#ec3750] bg-[#232946] rounded-full w-5 h-5 flex items-center justify-center font-bold text-base border border-[#4f5d75]">?</span>
+                            <span class="absolute left-1/2 -translate-x-1/2 mt-2 w-56 bg-[#232946] text-[#b8c1ec] text-sm rounded-lg shadow-lg px-4 py-2 border border-[#4f5d75] opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 z-20 whitespace-normal">
+                                You can find this by sending "/sdt whoami" in any channel and copy your user ID from the bot’s output.
+                            </span>
+                        </span>
+                    </label>
                     <input type="text" id="userID" placeholder="e.g., U08PGAD2KC1" class="w-full px-5 py-3 rounded-lg bg-[#232946] text-white text-lg border border-[#4f5d75]/40 focus:outline-none focus:ring-2 focus:ring-[#4f5d75] transition-all duration-200" />
                 </div>
                 <div class="flex flex-col gap-2">
